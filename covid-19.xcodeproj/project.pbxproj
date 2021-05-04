@@ -31,6 +31,7 @@
 		C2086E362641369400FD6702 /* CountriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2086E342641369400FD6702 /* CountriesCollectionViewCell.xib */; };
 		C2086E38264139F100FD6702 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2086E37264139F100FD6702 /* CountriesViewModel.swift */; };
 		C2086E3A26413C3000FD6702 /* CountryNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2086E3926413C3000FD6702 /* CountryNames.swift */; };
+		C2086E3E26416D9700FD6702 /* country.json in Resources */ = {isa = PBXBuildFile; fileRef = C2086E3D26416D9700FD6702 /* country.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		C2086E342641369400FD6702 /* CountriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesCollectionViewCell.xib; sourceTree = "<group>"; };
 		C2086E37264139F100FD6702 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		C2086E3926413C3000FD6702 /* CountryNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryNames.swift; sourceTree = "<group>"; };
+		C2086E3D26416D9700FD6702 /* country.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = country.json; sourceTree = "<group>"; };
 		C686A73CFB98CDC356F12A2C /* Pods-covid-19.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-covid-19.debug.xcconfig"; path = "Target Support Files/Pods-covid-19/Pods-covid-19.debug.xcconfig"; sourceTree = "<group>"; };
 		CD736A0748F00218CA1C6975 /* Pods-covid-19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-covid-19.release.xcconfig"; path = "Target Support Files/Pods-covid-19/Pods-covid-19.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 		C2035F2A263F62990013C163 /* covid-19 */ = {
 			isa = PBXGroup;
 			children = (
+				C2086E3D26416D9700FD6702 /* country.json */,
 				C2035F5E263F709F0013C163 /* Contracts */,
 				C2035F40263F63520013C163 /* Models */,
 				C2035F55263F64220013C163 /* Views */,
@@ -284,6 +287,7 @@
 			files = (
 				C2035F38263F629B0013C163 /* LaunchScreen.storyboard in Resources */,
 				C2035F35263F629B0013C163 /* Assets.xcassets in Resources */,
+				C2086E3E26416D9700FD6702 /* country.json in Resources */,
 				C2035F33263F62990013C163 /* Main.storyboard in Resources */,
 				C2086E362641369400FD6702 /* CountriesCollectionViewCell.xib in Resources */,
 			);

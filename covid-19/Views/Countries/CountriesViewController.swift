@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SDWebImage
 
 class CountriesViewController: UIViewController {
     private var countriesViewModel:CountriesViewModelType!
@@ -33,7 +34,9 @@ class CountriesViewController: UIViewController {
         
         countriesViewModel.dataObservable.bind(to: countriesCollectionView.rx.items(cellIdentifier: Constants.countriesNibCell)){row,item,cell in
            let castedCell = cell as! CountriesCollectionViewCell
-            castedCell.countryName.text = item
+            castedCell.layer.borderColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+            castedCell.layer.borderWidth = 2
+            castedCell.countryNameObs = item
         }.disposed(by: disposeBag)
         
         countriesViewModel.errorObservable.subscribe(onError: {[weak self] (error) in
@@ -49,9 +52,9 @@ class CountriesViewController: UIViewController {
         searchBar.rx.text
             .orEmpty.debug().distinctUntilChanged().bind(to: countriesViewModel.searchValue).disposed(by: disposeBag)
         
-//        countriesCollectionView.rx.modelSelected(String.self).subscribe(onNext: { (value) in
-//            print("\(value)")
-//            }).disposed(by: disposeBag)
+        countriesCollectionView.rx.modelSelected(String.self).subscribe(onNext: { (value) in
+            print(value)
+        }).disposed(by: disposeBag)
         
         countriesViewModel.fetchData()
     }
@@ -82,7 +85,7 @@ class CountriesViewController: UIViewController {
 extension CountriesViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: 110, height: 110)
+        return CGSize(width: 110, height: 130)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
