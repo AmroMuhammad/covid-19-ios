@@ -18,5 +18,12 @@ class CovidAPI : BaseAPI<ApplicationNetworking>,StatisticsAPI{
             completion(result)
         }
     }
-    
+}
+
+extension CovidAPI : CountriesAPI {
+    func getCountries(completion: @escaping (Result<CountryNames?, NSError>) -> Void) {
+        self.fetchData(target: .getCountriesStatistics, responseClass: CountryNames.self) { (result) in
+            completion(result)
+        }
+    }
 }

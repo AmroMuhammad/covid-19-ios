@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class WorldViewModel : ViewModelType {
+class WorldViewModel : StatisticsViewModelType {
     var connectivityObservable: Observable<Bool>
     var dataObservable: Observable<[Response]>
     var errorObservable: Observable<Bool>

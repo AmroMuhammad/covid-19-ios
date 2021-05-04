@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 class WorldTableViewController: UITableViewController {
-    private var worldViewModel:ViewModelType!
+    private var worldViewModel:StatisticsViewModelType!
     private let disposeBag = DisposeBag()
     private var activityView:UIActivityIndicatorView!
     

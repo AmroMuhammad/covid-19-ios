@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CountriesCollectionViewCell" id="gTV-IL-0wX" customClass="CountriesCollectionViewCell" customModule="covid_19" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="75" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="75" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lj5-YL-S9t">
+                        <rect key="frame" x="3" y="0.0" width="69" height="70"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="33v-c1-fOK">
+                        <rect key="frame" x="0.0" y="70" width="75" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lj5-YL-S9t" secondAttribute="bottom" constant="30" id="02V-fk-ciM"/>
+                <constraint firstItem="lj5-YL-S9t" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="b0M-pT-2hG"/>
+                <constraint firstAttribute="trailing" secondItem="lj5-YL-S9t" secondAttribute="trailing" constant="3" id="e3V-QR-kLI"/>
+                <constraint firstAttribute="bottom" secondItem="33v-c1-fOK" secondAttribute="bottom" id="fTY-om-ZyD"/>
+                <constraint firstItem="33v-c1-fOK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="70" id="gAE-kF-nFB"/>
+                <constraint firstItem="33v-c1-fOK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qu0-GJ-5zN"/>
+                <constraint firstItem="lj5-YL-S9t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rdR-XM-th6"/>
+                <constraint firstAttribute="trailing" secondItem="33v-c1-fOK" secondAttribute="trailing" id="yRt-fd-u6j"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="countryImage" destination="lj5-YL-S9t" id="VrC-e9-rIJ"/>
+                <outlet property="countryName" destination="33v-c1-fOK" id="2fE-jl-O8N"/>
+            </connections>
+            <point key="canvasLocation" x="339.85507246376812" y="70.647321428571431"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="placeholder" width="225" height="124"/>
+    </resources>
+</document>
