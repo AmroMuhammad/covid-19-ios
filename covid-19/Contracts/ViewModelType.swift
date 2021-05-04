@@ -14,4 +14,6 @@ protocol ViewModelType {
     var dataObservable:Observable<[Response]> {get}
     var errorObservable: Observable<Bool> {get}
     var LoadingObservable: Observable<Bool> {get}
+    var connectivityObservable: Observable<Bool> {get}
+
 }

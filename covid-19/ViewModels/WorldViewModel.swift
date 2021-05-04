@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 class WorldViewModel : ViewModelType {
-    
+    var connectivityObservable: Observable<Bool>
     var dataObservable: Observable<[Response]>
     var errorObservable: Observable<Bool>
     var LoadingObservable: Observable<Bool>
@@ -20,17 +20,22 @@ class WorldViewModel : ViewModelType {
     private var datasubject = PublishSubject<[Response]>()
     private var errorsubject = PublishSubject<Bool>()
     private var Loadingsubject = PublishSubject<Bool>()
-    
+    private var connectivitySubject = PublishSubject<Bool>()
+
     init(){
         dataObservable = datasubject.asObservable()
         LoadingObservable = Loadingsubject.asObservable()
         errorObservable = errorsubject.asObservable()
-        Loadingsubject.onNext(true)
-        errorsubject.onNext(false)
+        connectivityObservable = connectivitySubject.asObservable()
         covidAPI = CovidAPI.shared
     }
     
     func fetchData() {
+        if(!Connectivity.isConnectedToInternet){
+            connectivitySubject.onError(NSError(domain:"noInternet", code:0, userInfo:nil))
+            return
+        }
+        Loadingsubject.onNext(true)
         covidAPI.getWorldStatistics(countryName: "all") { [weak self] (result) in
             switch result{
             case .success(let stats):

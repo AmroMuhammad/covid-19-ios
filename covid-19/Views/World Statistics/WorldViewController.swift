@@ -14,16 +14,19 @@ class WorldViewController: UIViewController {
     private var worldViewModel:ViewModelType!
     private let disposeBag = DisposeBag()
     private var activityView:UIActivityIndicatorView!
-    
-    
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var timeLabel: UILabel!
+       
+    @IBOutlet weak var noConnectionImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Covid-19 Tracker"
         activityView = UIActivityIndicatorView(style: .large)
         worldViewModel = WorldViewModel()
 
         worldViewModel.dataObservable.subscribe(onNext: { [weak self] (response) in
-            print(response)
+            self?.updateUI(response: response[0])
         }).disposed(by: disposeBag)
         
         worldViewModel.errorObservable.subscribe(onError: {[weak self] (error) in
@@ -36,6 +39,11 @@ class WorldViewController: UIViewController {
             self.hideLoading()
             }).disposed(by: disposeBag)
         
+        worldViewModel.connectivityObservable.subscribe(onError: {[weak self] (error) in
+            self?.hideLoading()
+            self?.noConnectionImage.isHidden = false
+            }).disposed(by: disposeBag)
+        
         worldViewModel.fetchData()
     }
     
@@ -44,10 +52,12 @@ class WorldViewController: UIViewController {
         activityView!.center = self.view.center
         self.view.addSubview(activityView!)
         activityView!.startAnimating()
+        print("ASD")
     }
     
     func hideLoading() {
         activityView!.stopAnimating()
+        print("ASd")
     }
     
     func showErrorMessage(errorMessage: String) {
@@ -59,6 +69,11 @@ class WorldViewController: UIViewController {
             // Put your code here
         })
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func updateUI(response:Response){
+        self.dateLabel.text = response.day
+        self.timeLabel.text = (response.time?.components(separatedBy: "T")[1].components(separatedBy: "+")[0] ?? "")+" GMT"
     }
 
 }
