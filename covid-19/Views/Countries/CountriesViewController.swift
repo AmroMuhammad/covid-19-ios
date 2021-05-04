@@ -29,7 +29,7 @@ class CountriesViewController: UIViewController {
         activityView = UIActivityIndicatorView(style: .large)
         countriesViewModel = CountriesViewModel()
         
-        countriesCollectionView.rx.setDelegate(self)
+        countriesCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
         countriesViewModel.dataObservable.bind(to: countriesCollectionView.rx.items(cellIdentifier: Constants.countriesNibCell)){row,item,cell in
            let castedCell = cell as! CountriesCollectionViewCell
@@ -45,6 +45,13 @@ class CountriesViewController: UIViewController {
         }, onCompleted: {
             self.hideLoading()
             }).disposed(by: disposeBag)
+        
+        searchBar.rx.text
+            .orEmpty.debug().distinctUntilChanged().bind(to: countriesViewModel.searchValue).disposed(by: disposeBag)
+        
+//        countriesCollectionView.rx.modelSelected(String.self).subscribe(onNext: { (value) in
+//            print("\(value)")
+//            }).disposed(by: disposeBag)
         
         countriesViewModel.fetchData()
     }
@@ -69,17 +76,18 @@ class CountriesViewController: UIViewController {
         })
         self.present(alertController, animated: true, completion: nil)
     }
+    
 }
 
 extension CountriesViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: 75, height: 75)
+        return CGSize(width: 110, height: 110)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let inset:CGFloat = 2.5
-        return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        let inset:CGFloat = 10
+        return UIEdgeInsets(top: inset, left: inset/2, bottom: inset, right: inset/2)
     }
 }
 

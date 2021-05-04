@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol ViewModelType {
     func fetchData()
@@ -22,4 +23,5 @@ protocol StatisticsViewModelType:ViewModelType{
 
 protocol CountriesViewModelType:ViewModelType {
     var dataObservable:Observable<[String]> {get}
+    var searchValue : BehaviorRelay<String> {get}
 }
