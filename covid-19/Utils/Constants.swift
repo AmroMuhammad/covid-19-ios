@@ -17,6 +17,7 @@ struct Constants {
     // MARK: Amr Section
     
     static let baseURL = "https://covid-193.p.rapidapi.com/statistics"
+    static let countriesNibCell = "CountriesCollectionViewCell"
     
     
     static let genericError = "error in networkLayer"
