@@ -332,7 +332,7 @@
             </objects>
             <point key="canvasLocation" x="2786" y="121"/>
         </scene>
-        <!--Item-->
+        <!--Countries-->
         <scene sceneID="WMJ-Jt-MBf">
             <objects>
                 <viewController id="JvH-oN-NFs" customClass="CountriesViewController" customModule="covid_19" customModuleProvider="target" sceneMemberID="viewController">
@@ -377,7 +377,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Lc-k6-BwR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="flag" catalog="system" id="pBQ-oK-RWV"/>
+                    <tabBarItem key="tabBarItem" title="Countries" image="flag.fill" catalog="system" id="pBQ-oK-RWV"/>
                     <connections>
                         <outlet property="countriesCollectionView" destination="tOW-O8-lvK" id="ODq-FI-o3j"/>
                         <outlet property="searchBar" destination="LTt-HI-7Ks" id="34G-sj-5Z7"/>
@@ -410,7 +410,7 @@
         <scene sceneID="mKH-th-9D7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YAq-lQ-Jco" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="World" selectedImage="globe" catalog="system" id="VdP-vQ-kL2"/>
+                    <tabBarItem key="tabBarItem" title="World" image="globe" catalog="system" id="VdP-vQ-kL2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BWZ-dh-Z42">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -427,7 +427,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="flag" catalog="system" width="128" height="121"/>
+        <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="globe" catalog="system" width="128" height="121"/>
         <image name="noConnect" width="156.5" height="156.5"/>
         <image name="worldwide" width="170.5" height="170.5"/>

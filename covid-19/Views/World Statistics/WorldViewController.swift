@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class WorldViewController: UIViewController {
-    private var worldViewModel:ViewModelType!
+    private var worldViewModel:StatisticsViewModelType!
     private let disposeBag = DisposeBag()
     private var activityView:UIActivityIndicatorView!
     @IBOutlet private weak var dateLabel: UILabel!
@@ -52,12 +52,10 @@ class WorldViewController: UIViewController {
         activityView!.center = self.view.center
         self.view.addSubview(activityView!)
         activityView!.startAnimating()
-        print("ASD")
     }
     
     func hideLoading() {
         activityView!.stopAnimating()
-        print("ASd")
     }
     
     func showErrorMessage(errorMessage: String) {

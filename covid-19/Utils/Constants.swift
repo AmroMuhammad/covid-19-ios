@@ -16,7 +16,9 @@ struct Constants {
     
     // MARK: Amr Section
     
-    static let baseURL = "https://covid-193.p.rapidapi.com/statistics"
+    static let baseURL = "https://covid-193.p.rapidapi.com/"
+    static let statisticsPath = "statistics"
+    static let countriesNamePath = "countries"
     static let countriesNibCell = "CountriesCollectionViewCell"
     
     

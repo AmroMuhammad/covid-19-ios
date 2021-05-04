@@ -11,9 +11,15 @@ import RxSwift
 
 protocol ViewModelType {
     func fetchData()
-    var dataObservable:Observable<[Response]> {get}
     var errorObservable: Observable<Bool> {get}
     var LoadingObservable: Observable<Bool> {get}
-    var connectivityObservable: Observable<Bool> {get}
+}
 
+protocol StatisticsViewModelType:ViewModelType{
+    var dataObservable:Observable<[Response]> {get}
+    var connectivityObservable: Observable<Bool> {get}
+}
+
+protocol CountriesViewModelType:ViewModelType {
+    var dataObservable:Observable<[String]> {get}
 }
