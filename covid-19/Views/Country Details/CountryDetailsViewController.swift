@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CountryDetailsViewController: UIViewController {
+    private var historyViewModel:CountryDetailsViewModelType!
+    private let disposeBag = DisposeBag()
+    private var activityView:UIActivityIndicatorView!
+    
     @IBOutlet private weak var countryFlagImage: UIImageView!
     @IBOutlet private weak var countryNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -18,28 +24,54 @@ class CountryDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = countryName!
-        CovidAPI.shared.getCountryHistory(countryName: countryName!, date: "2021-05-04") { (result) in
-            switch result{
-            case .success(let history):
-                print(history)
-            case .failure(_):
-                print("ere")
-            }
-        }
-        // Do any additional setup after loading the view.
+        
+        activityView = UIActivityIndicatorView(style: .large)
+        historyViewModel = CountryDetailsViewModel()
+        
+        historyViewModel.dataObservable.subscribe(onNext: { [weak self] (response) in
+            let containerVC = self?.children.last as! CountryDetailsTableViewController
+            containerVC.updateUI(response: response[0])
+            self?.dateLabel.text = response[0].day
+            self?.timeLabel.text = (response[0].time!.components(separatedBy: "T")[1].components(separatedBy: "+")[0])+" GMT"
+            self?.countryNameLabel.text = self?.countryName
+            self?.countryFlagImage.sd_setImage(with: URL(string: "https://www.countryflags.io/\(Utils.countryCode(country: (self?.countryName)!))/shiny/64.png"), placeholderImage: UIImage(named: "placeholder"))
+        }).disposed(by: disposeBag)
+        
+        historyViewModel.errorObservable.subscribe(onError: {[weak self] (error) in
+            self?.showErrorMessage(errorMessage: "error")
+            }).disposed(by: disposeBag)
+        
+        historyViewModel.LoadingObservable.subscribe(onNext: {[weak self] (_) in
+            self?.showLoading()
+        }, onCompleted: {
+            self.hideLoading()
+            }).disposed(by: disposeBag)
+    
+        
+        historyViewModel.fetchDataWithoutDate(countryName: countryName)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showLoading() {
+        activityView!.center = self.view.center
+        self.view.addSubview(activityView!)
+        activityView!.startAnimating()
     }
-    */
+    
+    func hideLoading() {
+        activityView!.stopAnimating()
+    }
+    
+    func showErrorMessage(errorMessage: String) {
+        print(errorMessage)
+        let alertController = UIAlertController(title: "Error", message: "Error has Occurred", preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel)
+        { action -> Void in
+            // Put your code here
+        })
+        self.present(alertController, animated: true, completion: nil)
+    }
 
 }

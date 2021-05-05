@@ -25,3 +25,12 @@ protocol CountriesViewModelType:ViewModelType {
     var dataObservable:Observable<[String]> {get}
     var searchValue : BehaviorRelay<String> {get}
 }
+
+protocol CountryDetailsViewModelType {
+    func fetchDataWithoutDate(countryName:String)
+    func fetchDataWithDate(countryName:String,day:String)
+
+    var errorObservable: Observable<Bool> {get}
+    var LoadingObservable: Observable<Bool> {get}
+    var dataObservable:Observable<[Response]> {get}
+}

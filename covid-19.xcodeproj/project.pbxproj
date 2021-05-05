@@ -32,9 +32,9 @@
 		C2086E38264139F100FD6702 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2086E37264139F100FD6702 /* CountriesViewModel.swift */; };
 		C2086E3A26413C3000FD6702 /* CountryNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2086E3926413C3000FD6702 /* CountryNames.swift */; };
 		C2086E3E26416D9700FD6702 /* country.json in Resources */ = {isa = PBXBuildFile; fileRef = C2086E3D26416D9700FD6702 /* country.json */; };
+		C2328C872642992C00D93640 /* CountryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2328C862642992C00D93640 /* CountryDetailsViewModel.swift */; };
 		C25A465C264208A200AC667D /* CountryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25A465B264208A200AC667D /* CountryDetailsViewController.swift */; };
 		C25A465E26420B5000AC667D /* CountryDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25A465D26420B5000AC667D /* CountryDetailsTableViewController.swift */; };
-		C25A46602642116C00AC667D /* CountryHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25A465F2642116C00AC667D /* CountryHistory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,9 +65,9 @@
 		C2086E37264139F100FD6702 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		C2086E3926413C3000FD6702 /* CountryNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryNames.swift; sourceTree = "<group>"; };
 		C2086E3D26416D9700FD6702 /* country.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = country.json; sourceTree = "<group>"; };
+		C2328C862642992C00D93640 /* CountryDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewModel.swift; sourceTree = "<group>"; };
 		C25A465B264208A200AC667D /* CountryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewController.swift; sourceTree = "<group>"; };
 		C25A465D26420B5000AC667D /* CountryDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsTableViewController.swift; sourceTree = "<group>"; };
-		C25A465F2642116C00AC667D /* CountryHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryHistory.swift; sourceTree = "<group>"; };
 		C686A73CFB98CDC356F12A2C /* Pods-covid-19.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-covid-19.debug.xcconfig"; path = "Target Support Files/Pods-covid-19/Pods-covid-19.debug.xcconfig"; sourceTree = "<group>"; };
 		CD736A0748F00218CA1C6975 /* Pods-covid-19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-covid-19.release.xcconfig"; path = "Target Support Files/Pods-covid-19/Pods-covid-19.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +183,7 @@
 			children = (
 				C2035F5C263F6FAE0013C163 /* WorldViewModel.swift */,
 				C2086E37264139F100FD6702 /* CountriesViewModel.swift */,
+				C2328C862642992C00D93640 /* CountryDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -192,7 +193,6 @@
 			children = (
 				C2035F5A263F6A010013C163 /* StatisticsModel.swift */,
 				C2086E3926413C3000FD6702 /* CountryNames.swift */,
-				C25A465F2642116C00AC667D /* CountryHistory.swift */,
 			);
 			path = POJOs;
 			sourceTree = "<group>";
@@ -359,8 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2328C872642992C00D93640 /* CountryDetailsViewModel.swift in Sources */,
 				C2035F58263F64950013C163 /* WorldViewController.swift in Sources */,
-				C25A46602642116C00AC667D /* CountryHistory.swift in Sources */,
 				C2086E352641369400FD6702 /* CountriesCollectionViewCell.swift in Sources */,
 				C25A465C264208A200AC667D /* CountryDetailsViewController.swift in Sources */,
 				C2035F4C263F63520013C163 /* TargetType.swift in Sources */,

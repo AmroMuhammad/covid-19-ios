@@ -30,7 +30,7 @@ struct Response: Codable {
 // MARK: - Cases
 struct Cases: Codable {
     let new: String?
-    let active, critical, recovered, total: Int
+    let active, critical, recovered, total: Int?
 }
 
 // MARK: - Deaths

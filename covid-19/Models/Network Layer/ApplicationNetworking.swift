@@ -12,7 +12,9 @@ import Alamofire
 enum ApplicationNetworking{
     case getWorldStatistics(country:String)
     case getCountriesStatistics
-    case countryHistory(country:String,date:String)
+    case countryHistoryWithoutDate(country:String)
+    case countryHistoryWithDate(country:String,date:String)
+
 }
 
 extension ApplicationNetworking : TargetType {
@@ -29,18 +31,16 @@ extension ApplicationNetworking : TargetType {
             return Constants.statisticsPath
         case .getCountriesStatistics:
             return Constants.countriesNamePath
-        case .countryHistory:
+        case .countryHistoryWithoutDate:
+            return Constants.historyNamePath
+        case .countryHistoryWithDate:
             return Constants.historyNamePath
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .getWorldStatistics:
-            return .get
-        case .getCountriesStatistics:
-            return .get
-        case .countryHistory:
+        default:
             return .get
         }
     }
@@ -51,7 +51,9 @@ extension ApplicationNetworking : TargetType {
             return .requestParameters(parameters: ["country":country], encoding: URLEncoding.default)   //for get,head or delete use URLEncoding.default
         case .getCountriesStatistics:
             return .requestPlain
-        case .countryHistory(let country,let date):
+        case .countryHistoryWithoutDate(let country):
+            return .requestParameters(parameters: ["country":country], encoding: URLEncoding.default)
+        case .countryHistoryWithDate(let country,let date):
             return .requestParameters(parameters: ["country":country,"day":date], encoding: URLEncoding.default)
         }
     }

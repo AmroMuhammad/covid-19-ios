@@ -26,3 +26,28 @@ extension UIImageView{
         self.layer.borderWidth = 2.0
     }
 }
+
+struct Utils{
+    static func countryCode(country:String)->String{
+        let url = Bundle.main.url(forResource: "country", withExtension: "json")!
+        do {
+            let data = try Data(contentsOf: url)
+            let jsonSerialize = try JSONSerialization.jsonObject(with: data, options: []) as? [String:[[String:String]]]
+                
+            let arr = jsonSerialize!["countries"]!
+            
+            for dict1 in arr {
+                for (key, value) in dict1 {
+                    if(key == country){
+                        return(value)
+                    }
+                }
+            }
+            return "error"
+        }
+        catch {
+            print(error)
+            return ""
+        }
+    }
+}

@@ -11,9 +11,6 @@ import RxCocoa
 import RxSwift
 
 class WorldTableViewController: UITableViewController {
-    private var worldViewModel:StatisticsViewModelType!
-    private let disposeBag = DisposeBag()
-    private var activityView:UIActivityIndicatorView!
     
     @IBOutlet private weak var newCasesLabel: UILabel!
     @IBOutlet private weak var activeCasesLabel: UILabel!
@@ -27,14 +24,6 @@ class WorldTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityView = UIActivityIndicatorView(style: .large)
-        worldViewModel = WorldViewModel()
-
-        worldViewModel.dataObservable.subscribe(onNext: { [weak self] (response) in
-            self?.updateUI(response: response[0])
-        }).disposed(by: disposeBag)
-        
-        worldViewModel.fetchData()
     }
 
     // MARK: - Table view data source
@@ -55,10 +44,10 @@ class WorldTableViewController: UITableViewController {
 
     func updateUI(response:Response){
         newCasesLabel.text = response.cases.new
-        activeCasesLabel.text = String(response.cases.active)
-        criticalCasesLabel.text = String(response.cases.critical)
-        recoveredCasesLabel.text = String(response.cases.recovered)
-        totalCasesLabel.text = String(response.cases.total)
+        activeCasesLabel.text = String(response.cases.active!)
+        criticalCasesLabel.text = String(response.cases.critical!)
+        recoveredCasesLabel.text = String(response.cases.recovered!)
+        totalCasesLabel.text = String(response.cases.total!)
 
         newDeathsLabel.text = String(response.deaths.new ?? "")
         totalDeathsLabel.text = String(response.deaths.total!)

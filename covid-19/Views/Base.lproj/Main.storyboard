@@ -469,7 +469,6 @@
         <!--Tab Bar Controller-->
         <scene sceneID="GHt-NZ-VA7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NNA-6A-QQa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ZNh-2g-0B6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YCh-Xr-xVN">
@@ -482,6 +481,7 @@
                         <segue destination="6WU-BK-9n9" kind="relationship" relationship="viewControllers" id="9uy-0u-9Dn"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NNA-6A-QQa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="120.53571428571428"/>
         </scene>
@@ -730,6 +730,15 @@
                             <outlet property="delegate" destination="PpX-aC-edR" id="8Ks-sM-V4m"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="activeCasesLabel" destination="6NT-Fr-bfd" id="3y8-zJ-86F"/>
+                        <outlet property="criticalCasesLabel" destination="r5c-YQ-Qyd" id="gd0-K1-8EV"/>
+                        <outlet property="newCasesLabel" destination="QQp-pY-KmK" id="mmz-yA-xu9"/>
+                        <outlet property="newDeathLabel" destination="5cU-3M-fXD" id="pBZ-1F-rwp"/>
+                        <outlet property="recoveredCasesLabel" destination="ASa-ja-LGX" id="IRl-TX-EnH"/>
+                        <outlet property="totalCasesLabel" destination="4aR-O1-Hxz" id="Iz3-yy-QAY"/>
+                        <outlet property="totalDeathLabel" destination="eez-8g-nuW" id="Vae-U4-oeV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jl1-YD-iOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
