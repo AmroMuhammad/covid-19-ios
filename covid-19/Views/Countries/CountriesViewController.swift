@@ -52,8 +52,10 @@ class CountriesViewController: UIViewController {
         searchBar.rx.text
             .orEmpty.debug().distinctUntilChanged().bind(to: countriesViewModel.searchValue).disposed(by: disposeBag)
         
-        countriesCollectionView.rx.modelSelected(String.self).subscribe(onNext: { (value) in
-            print(value)
+        countriesCollectionView.rx.modelSelected(String.self).subscribe(onNext: {[weak self] (value) in
+            let detailsVC = self?.storyboard?.instantiateViewController(identifier: Constants.countryDetailsVC) as! CountryDetailsViewController
+            detailsVC.countryName = value
+            self?.navigationController?.pushViewController(detailsVC, animated: true)
         }).disposed(by: disposeBag)
         
         countriesViewModel.fetchData()

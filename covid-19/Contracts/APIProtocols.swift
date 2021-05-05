@@ -14,3 +14,7 @@ protocol StatisticsAPI {
 protocol CountriesAPI {
     func getCountries(completion: @escaping (Result<CountryNames?,NSError>) -> Void)
 }
+
+protocol CountryHistoryAPI {
+    func getCountryHistory(countryName:String,date:String,completion: @escaping (Result<CountryHistory?,NSError>) -> Void)
+}
