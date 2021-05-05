@@ -48,6 +48,7 @@ class CountriesViewModel : CountriesViewModelType {
                 self?.datasubject.onNext(self?.data ?? [])
                 self?.Loadingsubject.onCompleted()
             case .failure(let error):
+                self?.Loadingsubject.onCompleted()
                 self?.errorsubject.onError(error)
             }
         }
