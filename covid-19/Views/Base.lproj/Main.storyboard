@@ -433,6 +433,14 @@
                                     <segue destination="PpX-aC-edR" kind="embed" id="vTZ-lB-myg"/>
                                 </connections>
                             </containerView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="By1-3v-e0Q">
+                                <rect key="frame" x="340" y="138" width="44" height="34"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="mNE-fv-Bgv" appends="YES" id="DJ3-cm-rUM"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -441,10 +449,14 @@
                             <constraint firstItem="rH4-Xq-mNl" firstAttribute="centerY" secondItem="wGZ-af-U7b" secondAttribute="centerY" id="Dad-6D-L0h"/>
                             <constraint firstItem="dp4-dg-nCv" firstAttribute="top" secondItem="rgl-ZF-yif" secondAttribute="bottom" constant="10" id="OBp-t4-WLd"/>
                             <constraint firstItem="dp4-dg-nCv" firstAttribute="leading" secondItem="by4-e0-wNT" secondAttribute="trailing" constant="20" id="Qoa-bh-iMy"/>
+                            <constraint firstItem="By1-3v-e0Q" firstAttribute="leading" secondItem="B2d-Jj-0Lh" secondAttribute="leading" constant="340" id="RjO-z3-byb"/>
                             <constraint firstItem="wGZ-af-U7b" firstAttribute="top" secondItem="dp4-dg-nCv" secondAttribute="bottom" constant="10" id="U1U-zc-d6k"/>
+                            <constraint firstAttribute="trailing" secondItem="By1-3v-e0Q" secondAttribute="trailing" constant="30" id="Vjz-ld-yei"/>
+                            <constraint firstItem="C3U-Yu-QAL" firstAttribute="top" secondItem="By1-3v-e0Q" secondAttribute="bottom" constant="50" id="ZXP-5S-J89"/>
                             <constraint firstItem="rgl-ZF-yif" firstAttribute="leading" secondItem="by4-e0-wNT" secondAttribute="trailing" constant="20" id="bQ5-5d-cgR"/>
                             <constraint firstItem="C3U-Yu-QAL" firstAttribute="trailing" secondItem="B2d-Jj-0Lh" secondAttribute="trailing" id="cjY-Wd-owG"/>
                             <constraint firstItem="by4-e0-wNT" firstAttribute="top" secondItem="B2d-Jj-0Lh" secondAttribute="top" constant="25" id="hif-Ys-RxM"/>
+                            <constraint firstItem="By1-3v-e0Q" firstAttribute="top" secondItem="B2d-Jj-0Lh" secondAttribute="top" constant="50" id="qmS-mv-kea"/>
                             <constraint firstItem="rgl-ZF-yif" firstAttribute="top" secondItem="B2d-Jj-0Lh" secondAttribute="top" constant="25" id="qqh-JE-ngS"/>
                             <constraint firstItem="C3U-Yu-QAL" firstAttribute="top" secondItem="rH4-Xq-mNl" secondAttribute="bottom" constant="20" id="rs2-Ko-369"/>
                             <constraint firstItem="C3U-Yu-QAL" firstAttribute="leading" secondItem="B2d-Jj-0Lh" secondAttribute="leading" id="ul1-wV-L0C"/>
@@ -465,10 +477,12 @@
                         <outlet property="countryFlagImage" destination="by4-e0-wNT" id="vVy-Fz-fUh"/>
                         <outlet property="countryNameLabel" destination="rgl-ZF-yif" id="KLa-xO-xEW"/>
                         <outlet property="dateLabel" destination="dp4-dg-nCv" id="gjd-nA-j0b"/>
+                        <outlet property="favouriteButton" destination="By1-3v-e0Q" id="5T8-LV-pJk"/>
                         <outlet property="timeLabel" destination="rH4-Xq-mNl" id="yEg-0v-LUp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ThC-y5-LFN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mNE-fv-Bgv"/>
             </objects>
             <point key="canvasLocation" x="1979.7101449275365" y="958.92857142857133"/>
         </scene>
@@ -775,6 +789,7 @@
         <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="globe" catalog="system" width="128" height="121"/>
         <image name="noConnect" width="156.5" height="156.5"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="worldwide" width="170.5" height="170.5"/>
     </resources>
 </document>

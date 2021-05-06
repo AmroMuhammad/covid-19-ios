@@ -60,5 +60,15 @@ class CountryDetailsViewModel :CountryDetailsViewModelType {
 
     }
     
+    func addToCoreData(country:CountryCDModel){
+        LocalManager.sharedInstance.addData(countryObject: country)
+    }
     
+    func checkDataExistanceInCD(countryName: String) -> Bool{
+        return LocalManager.sharedInstance.checkData(countryName: countryName)
+    }
+    
+    func deleteFromCoreData(countryName: String) {
+        LocalManager.sharedInstance.deleteData(countryName: countryName)
+    }
 }
