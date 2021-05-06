@@ -19,10 +19,13 @@ struct Constants {
     static let baseURL = "https://covid-193.p.rapidapi.com/"
     static let statisticsPath = "statistics"
     static let countriesNamePath = "countries"
+    static let historyNamePath = "history"
+
     static let countriesNibCell = "CountriesCollectionViewCell"
     
     
     static let genericError = "error in networkLayer"
+    static let countryDetailsVC = "CountryDetailsViewController"
 
     
     

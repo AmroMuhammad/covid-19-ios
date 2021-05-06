@@ -1,34 +1,31 @@
 //
-//  WorldTableViewController.swift
+//  CountryDetailsTableViewController.swift
 //  covid-19
 //
-//  Created by Amr Muhammad on 5/2/21.
+//  Created by Amr Muhammad on 5/4/21.
 //  Copyright © 2021 Amr Muhammad. All rights reserved.
 //
 
 import UIKit
-import RxCocoa
-import RxSwift
 
-class WorldTableViewController: UITableViewController {
-    
+class CountryDetailsTableViewController: UITableViewController {
     @IBOutlet private weak var newCasesLabel: UILabel!
     @IBOutlet private weak var activeCasesLabel: UILabel!
     @IBOutlet private weak var criticalCasesLabel: UILabel!
     @IBOutlet private weak var recoveredCasesLabel: UILabel!
     @IBOutlet private weak var totalCasesLabel: UILabel!
-    
-    @IBOutlet weak var newDeathsLabel: UILabel!
-    @IBOutlet weak var totalDeathsLabel: UILabel!
+    @IBOutlet weak var newDeathLabel: UILabel!
+    @IBOutlet weak var totalDeathLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
@@ -44,16 +41,15 @@ class WorldTableViewController: UITableViewController {
 
     func updateUI(response:Response){
         newCasesLabel.text = response.cases.new
-        activeCasesLabel.text = String(response.cases.active!)
-        criticalCasesLabel.text = String(response.cases.critical!)
-        recoveredCasesLabel.text = String(response.cases.recovered!)
-        totalCasesLabel.text = String(response.cases.total!)
-
-        newDeathsLabel.text = String(response.deaths.new ?? "")
-        totalDeathsLabel.text = String(response.deaths.total!)
-
+        activeCasesLabel.text = String(response.cases.active ?? 0)
+        criticalCasesLabel.text = String(response.cases.critical ?? 0)
+        recoveredCasesLabel.text = String(response.cases.recovered ?? 0)
+        totalCasesLabel.text = String(response.cases.total ?? 0)
+        newDeathLabel.text = response.deaths.new
+        totalDeathLabel.text = String(response.deaths.total ?? 0)
 
     }
 
+    
 
 }

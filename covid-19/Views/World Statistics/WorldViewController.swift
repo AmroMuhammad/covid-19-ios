@@ -26,6 +26,8 @@ class WorldViewController: UIViewController {
         worldViewModel = WorldViewModel()
 
         worldViewModel.dataObservable.subscribe(onNext: { [weak self] (response) in
+            let containerVC = self?.children.last as! WorldTableViewController
+            containerVC.updateUI(response: response[0])
             self?.updateUI(response: response[0])
         }).disposed(by: disposeBag)
         

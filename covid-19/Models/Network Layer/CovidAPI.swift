@@ -27,3 +27,20 @@ extension CovidAPI : CountriesAPI {
         }
     }
 }
+
+extension CovidAPI : CountryHistoryAPI{
+    func getCountryHistoryWithoutDate(countryName: String, completion: @escaping (Result<StatisticsModel?, NSError>) -> Void) {
+        self.fetchData(target: .countryHistoryWithoutDate(country: countryName), responseClass: StatisticsModel.self) { (result) in
+            completion(result)
+        }
+    }
+    
+    func getCountryHistoryWithDate(countryName: String, date: String, completion: @escaping (Result<StatisticsModel?, NSError>) -> Void) {
+        fetchData(target: .countryHistoryWithDate(country: countryName, date: date), responseClass: StatisticsModel.self) { (result) in
+            completion(result)
+        }
+    }
+    
+    
+    
+}
