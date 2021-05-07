@@ -14,31 +14,66 @@ class CountryDetailsViewController: UIViewController {
     private var historyViewModel:CountryDetailsViewModelType!
     private let disposeBag = DisposeBag()
     private var activityView:UIActivityIndicatorView!
-    var toolBar = UIToolbar()
-    var datePicker  = UIDatePicker()
-    var dateRecieved:Date = Date()
-    let dateFormatter = DateFormatter()
+    private var toolBar = UIToolbar()
+    private var datePicker  = UIDatePicker()
+    private var dateRecieved:Date = Date()
+    private let dateFormatter = DateFormatter()
+    private var countryCDObject : CountryCDModel!
     
     @IBOutlet private weak var countryFlagImage: UIImageView!
     @IBOutlet private weak var countryNameLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var calenderButton: UIBarButtonItem!
+    @IBOutlet private weak var favouriteButton: UIImageView!
     
     var countryName:String!
+    var comingFrom:String!
+    var recievedCountryObject:CountryCDModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = countryName!
         
+        if(comingFrom == "favourite"){
+            favouriteButton.isHidden = true
+            navigationItem.rightBarButtonItem = nil
+            
+            let containerVC = self.children.last as! CountryDetailsTableViewController
+            containerVC.updateUIFromFavourite(response: recievedCountryObject)
+            self.dateLabel.text = recievedCountryObject.date
+            self.timeLabel.text = (recievedCountryObject.time.components(separatedBy: "T")[1].components(separatedBy: "+")[0])+" GMT"
+            self.countryNameLabel.text = countryName
+            self.countryFlagImage.sd_setImage(with: URL(string: "https://www.countryflags.io/\(Utils.countryCode(country: (self.countryName)!))/shiny/64.png"), placeholderImage: UIImage(named: "placeholder"))
+            
+        }else{
+        // MARK: gesture to add and remove from favourites
+        let tap = UITapGestureRecognizer(target: self, action:#selector(favouriteTapped))
+        favouriteButton.addGestureRecognizer(tap)
+        favouriteButton.isUserInteractionEnabled = true
         activityView = UIActivityIndicatorView(style: .large)
         historyViewModel = CountryDetailsViewModel()
         
+        // MARK: check country existance in coredata and set image
+        if(historyViewModel.checkDataExistanceInCD(countryName: countryName)){
+                favouriteButton.image = UIImage(systemName: "star.fill")
+                favouriteButton.tintColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+                favouriteButton.tag = 1
+            }else{
+                favouriteButton.image = UIImage(systemName: "star")
+                favouriteButton.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                favouriteButton.tag = 0
+            }
+        
+        //
         historyViewModel.dataObservable.subscribe(onNext: { [weak self] (response) in
+            //send data to container (table view)
             let containerVC = self?.children.last as! CountryDetailsTableViewController
             if(response.isEmpty){
                 self?.showErrorMessage(errorMessage: "No data Available in this day")
             }else{
+                self?.createObjectForCoreData(response: response[0])
+                
                 containerVC.updateUI(response: response[0])
                 self?.dateLabel.text = response[0].day
                 self?.timeLabel.text = (response[0].time!.components(separatedBy: "T")[1].components(separatedBy: "+")[0])+" GMT"
@@ -59,6 +94,7 @@ class CountryDetailsViewController: UIViewController {
         
         
         historyViewModel.fetchDataWithoutDate(countryName: countryName)
+            }
     }
     
     
@@ -88,7 +124,7 @@ class CountryDetailsViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    
+    //show date picker
     @IBAction func showCalender(_ sender: UIBarButtonItem) {
         datePicker = UIDatePicker.init()
         datePicker.backgroundColor = UIColor.white
@@ -129,4 +165,26 @@ class CountryDetailsViewController: UIViewController {
         datePicker.removeFromSuperview()
     }
     
+    //when pressing on star to save or delete from database
+    @objc func favouriteTapped(){
+        if(favouriteButton.tag == 0){
+            //save
+            favouriteButton.image = UIImage(systemName: "star.fill")
+            favouriteButton.tintColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+            favouriteButton.tag = 1
+            historyViewModel.addToCoreData(country: countryCDObject)
+        }else{
+            //unsave
+            favouriteButton.image = UIImage(systemName: "star")
+            favouriteButton.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            favouriteButton.tag = 0
+            historyViewModel.deleteFromCoreData(countryName: countryName)
+        }
+        
+    }
+    
+    
+    func createObjectForCoreData(response:Response){
+        countryCDObject = CountryCDModel(countryName: countryName, date: response.day!, time: response.time!, newCases: response.cases.new!, activeCases: String(response.cases.active!), criticalCases: String(response.cases.critical!), recoveredCases: String(response.cases.recovered!), totalCases: String(response.cases.total!), newDeaths: response.deaths.new!, totalDeaths: String(response.deaths.total!))
+    }
 }

@@ -49,6 +49,17 @@ class CountryDetailsTableViewController: UITableViewController {
         totalDeathLabel.text = String(response.deaths.total ?? 0)
 
     }
+    
+    func updateUIFromFavourite(response:CountryCDModel){
+        newCasesLabel.text = response.newCases
+        activeCasesLabel.text = response.activeCases
+        criticalCasesLabel.text = response.criticalCases
+        recoveredCasesLabel.text = response.recoveredCases
+        totalCasesLabel.text = response.totalCases
+        newDeathLabel.text = response.newDeaths
+        totalDeathLabel.text = response.totalDeaths
+
+    }
 
     
 

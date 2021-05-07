@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CountryCD" representedClassName="CountryCD" syncable="YES" codeGenerationType="class">
+        <attribute name="activeCases" optional="YES" attributeType="String"/>
+        <attribute name="countryName" optional="YES" attributeType="String"/>
+        <attribute name="criticalCases" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="newCases" optional="YES" attributeType="String"/>
+        <attribute name="newDeaths" optional="YES" attributeType="String"/>
+        <attribute name="recoveredCases" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="totalCases" optional="YES" attributeType="String"/>
+        <attribute name="totalDeaths" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="CountryCD" positionX="-54" positionY="-9" width="128" height="193"/>
+    </elements>
+</model>

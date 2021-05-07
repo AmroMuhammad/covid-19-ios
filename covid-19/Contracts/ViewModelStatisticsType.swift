@@ -29,8 +29,15 @@ protocol CountriesViewModelType:ViewModelType {
 protocol CountryDetailsViewModelType {
     func fetchDataWithoutDate(countryName:String)
     func fetchDataWithDate(countryName:String,day:String)
+    func addToCoreData(country:CountryCDModel)
+    func checkDataExistanceInCD(countryName : String)->Bool
+    func deleteFromCoreData(countryName : String)
 
     var errorObservable: Observable<Bool> {get}
     var LoadingObservable: Observable<Bool> {get}
     var dataObservable:Observable<[Response]> {get}
+}
+
+protocol FavouriteViewModelType : ViewModelType {
+    var dataObservable:Observable<[CountryCDModel]> {get}
 }
