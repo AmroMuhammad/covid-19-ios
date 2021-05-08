@@ -364,13 +364,20 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noConnect" translatesAutoresizingMaskIntoConstraints="NO" id="8uZ-0u-RoP">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="8Lc-k6-BwR" firstAttribute="bottom" secondItem="8uZ-0u-RoP" secondAttribute="bottom" id="0yA-Ha-vAj"/>
+                            <constraint firstItem="8Lc-k6-BwR" firstAttribute="trailing" secondItem="8uZ-0u-RoP" secondAttribute="trailing" id="5aJ-93-0dv"/>
                             <constraint firstItem="tOW-O8-lvK" firstAttribute="top" secondItem="LTt-HI-7Ks" secondAttribute="bottom" id="AiD-F8-cDx"/>
+                            <constraint firstItem="8uZ-0u-RoP" firstAttribute="top" secondItem="8Lc-k6-BwR" secondAttribute="top" id="Mhg-i4-2uR"/>
                             <constraint firstItem="LTt-HI-7Ks" firstAttribute="leading" secondItem="q4W-E6-f1Z" secondAttribute="leading" id="Oxv-On-mCN"/>
                             <constraint firstItem="8Lc-k6-BwR" firstAttribute="bottom" secondItem="tOW-O8-lvK" secondAttribute="bottom" id="P7a-Cu-wBb"/>
                             <constraint firstItem="8Lc-k6-BwR" firstAttribute="trailing" secondItem="LTt-HI-7Ks" secondAttribute="trailing" id="R5h-xS-Fc8"/>
+                            <constraint firstItem="8uZ-0u-RoP" firstAttribute="leading" secondItem="8Lc-k6-BwR" secondAttribute="leading" id="acz-6A-Y05"/>
                             <constraint firstItem="tOW-O8-lvK" firstAttribute="leading" secondItem="8Lc-k6-BwR" secondAttribute="leading" id="gFo-Ng-CxB"/>
                             <constraint firstItem="8Lc-k6-BwR" firstAttribute="trailing" secondItem="tOW-O8-lvK" secondAttribute="trailing" id="hC1-mz-dCR"/>
                             <constraint firstItem="LTt-HI-7Ks" firstAttribute="top" secondItem="8Lc-k6-BwR" secondAttribute="top" id="vHN-FK-2v9"/>
@@ -380,6 +387,7 @@
                     <navigationItem key="navigationItem" title="Covid-19 Tracker" id="iFq-D2-NtJ"/>
                     <connections>
                         <outlet property="countriesCollectionView" destination="tOW-O8-lvK" id="ODq-FI-o3j"/>
+                        <outlet property="noConnectionImage" destination="8uZ-0u-RoP" id="jRa-P8-J8Z"/>
                         <outlet property="searchBar" destination="LTt-HI-7Ks" id="34G-sj-5Z7"/>
                         <segue destination="Oet-cv-xs8" kind="push" id="aNu-AC-0fv"/>
                     </connections>

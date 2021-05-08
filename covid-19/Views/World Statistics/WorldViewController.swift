@@ -44,6 +44,7 @@ class WorldViewController: UIViewController {
         worldViewModel.connectivityObservable.subscribe(onError: {[weak self] (error) in
             self?.hideLoading()
             self?.noConnectionImage.isHidden = false
+            self?.showErrorMessage(errorMessage: "")
             }).disposed(by: disposeBag)
         
         worldViewModel.fetchData()
@@ -62,7 +63,7 @@ class WorldViewController: UIViewController {
     
     func showErrorMessage(errorMessage: String) {
         print(errorMessage)
-        let alertController = UIAlertController(title: "Error", message: "Error has Occurred", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: "No Internet Connection", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel)
         { action -> Void in

@@ -17,6 +17,7 @@ class CountriesViewController: UIViewController {
     private var activityView:UIActivityIndicatorView!
     
     @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var noConnectionImage: UIImageView!
     @IBOutlet private weak var countriesCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -40,7 +41,8 @@ class CountriesViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         countriesViewModel.errorObservable.subscribe(onError: {[weak self] (error) in
-            self?.showErrorMessage(errorMessage: "error")
+            self?.hideLoading()
+            self?.noConnectionImage.isHidden = false
             }).disposed(by: disposeBag)
         
         countriesViewModel.LoadingObservable.subscribe(onNext: {[weak self] (_) in
@@ -73,8 +75,7 @@ class CountriesViewController: UIViewController {
     }
     
     func showErrorMessage(errorMessage: String) {
-        print(errorMessage)
-        let alertController = UIAlertController(title: "Error", message: "Error has Occurred", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: "An Error Occured", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel)
         { action -> Void in
