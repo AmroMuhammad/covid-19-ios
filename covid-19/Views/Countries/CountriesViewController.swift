@@ -55,6 +55,7 @@ class CountriesViewController: UIViewController {
         countriesCollectionView.rx.modelSelected(String.self).subscribe(onNext: {[weak self] (value) in
             let detailsVC = self?.storyboard?.instantiateViewController(identifier: Constants.countryDetailsVC) as! CountryDetailsViewController
             detailsVC.countryName = value
+            detailsVC.comingFrom = "countries"
             self?.navigationController?.pushViewController(detailsVC, animated: true)
         }).disposed(by: disposeBag)
         

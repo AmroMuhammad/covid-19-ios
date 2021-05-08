@@ -47,7 +47,7 @@ class LocalManager {
         let context = appDelegte.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: Constants.coreDataName, in: context)
         let countryCDObj = NSManagedObject(entity: entity!, insertInto: context)
-
+        
         countryCDObj.setValue(countryObject.countryName, forKey: "countryName")
         countryCDObj.setValue(countryObject.date, forKey: "date")
         countryCDObj.setValue(countryObject.time, forKey: "time")
@@ -58,7 +58,7 @@ class LocalManager {
         countryCDObj.setValue(countryObject.totalCases, forKey: "totalCases")
         countryCDObj.setValue(countryObject.newDeaths, forKey: "newDeaths")
         countryCDObj.setValue(countryObject.totalDeaths, forKey: "totalDeaths")
-
+        
         do{
             try context.save()
             print("\nDataAddedToLocal")
@@ -66,7 +66,7 @@ class LocalManager {
             print("CATCH WHEN SAVE")
         }
     }
-
+    
     func deleteData(countryName: String) {
         let appDelegte = UIApplication.shared.delegate as? AppDelegate
         let context = appDelegte!.persistentContainer.viewContext
@@ -92,41 +92,62 @@ class LocalManager {
         }
         print("Finish Removing  DLT")
     }
-//
-//    func getData(delegate: FavoriteLeaguePresenterProtocol) {
-//
-//        var leaguesArr = [Country]()
-//
-//        let appDelegte = UIApplication.shared.delegate as? AppDelegate
-//        let context = appDelegte!.persistentContainer.viewContext
-//        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "FavoriteLeagues")
-//        do{
-//            let leagues = try context.fetch(fetchReq)
-//            for item in leagues {
-//                if let leagueId = item.value(forKey: "leagueId"){
-//                    if let leagueName = item.value(forKey: "leagueName"){
-//                        if let leagueBadge = item.value(forKey: "leagueBadge"){
-//                            if let youtubeStr = item.value(forKey: "youtubeStr"){
-//                                leaguesArr.append(Country(idLeague: leagueId as? String, idAPIfootball: nil, strSport: nil, strLeague: leagueName as? String, strLeagueAlternate: nil, strDivision: nil, idCup: nil, strCurrentSeason: nil, intFormedYear: nil, dateFirstEvent: nil, strGender: nil, strCountry: nil, strWebsite: nil, strFacebook: nil, strTwitter: nil, strYoutube: youtubeStr as? String, strRSS: nil, strDescriptionEN: nil, strBadge: leagueBadge as? String, strNaming: nil, strLocked: nil))
-//                            } else {
-//                                print("empty YOUTUBE  GET")
-//                            }
-//                        } else {
-//                            print("empty BADEG  GET")
-//                        }
-//                    } else {
-//                        print("empty NAME  GET")
-//                    }
-//                } else {
-//                    print("empty ID  GET")
-//                }
-//            }
-//        } catch (let err) {
-//            print("CAAAAAAAAATCHHHHHHHH  GET")
-//            delegate.onFailure(errorMessage: err.localizedDescription)
-//        }
-//        print("Finish Retrive  GET")
-//
-//        delegate.onSuccess(leagues: leaguesArr)
-//        }
+    //
+    func getData()-> [CountryCDModel]{
+        var countriesArray = [CountryCDModel]()
+        let appDelegte = UIApplication.shared.delegate as? AppDelegate
+        let context = appDelegte!.persistentContainer.viewContext
+        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: Constants.coreDataName)
+        do{
+            let countries = try context.fetch(fetchReq)
+            for item in countries {
+                if let countryName = item.value(forKey: "countryName"){
+                    if let date = item.value(forKey: "date"){
+                        if let time = item.value(forKey: "time"){
+                            if let newCases = item.value(forKey: "newCases"){
+                                if let activeCases = item.value(forKey: "activeCases"){
+                                    if let recoveredCases = item.value(forKey: "recoveredCases"){
+                                        if let criticalCases = item.value(forKey: "criticalCases"){
+                                            if let totalCases = item.value(forKey: "totalCases"){
+                                                if let newDeaths = item.value(forKey: "newDeaths"){
+                                                    if let totalDeaths = item.value(forKey: "totalDeaths"){
+                                                        countriesArray.append(CountryCDModel(countryName: countryName as! String, date: date as! String, time: time as! String, newCases: newCases as! String, activeCases: activeCases as! String, criticalCases: criticalCases as! String, recoveredCases: recoveredCases as! String, totalCases: totalCases as! String, newDeaths: newDeaths as! String, totalDeaths: totalDeaths as! String))
+                                                    }else{
+                                                        print("empty total deaths")
+                                                    }
+                                                }else{
+                                                    print("empty new deaths")
+                                                }
+                                            }else{
+                                                print("empty total cases")
+                                            }
+                                        }else{
+                                            print("empty critical ")
+                                        }
+                                    }else{
+                                        print("empty recovered")
+                                    }
+                                }else{
+                                    print("empty active")
+                                }
+                            } else {
+                                print("empty newCases")
+                            }
+                        } else {
+                            print("empty time")
+                        }
+                    } else {
+                        print("empty date")
+                    }
+                } else {
+                    print("empty countryName")
+                }
+            }
+        } catch (_) {
+            print("CAAAAAAAAATCHHHHHHHH  GET")
+            return countriesArray
+        }
+        print("Finish Retrive  GET")
+        return countriesArray
+    }
 }

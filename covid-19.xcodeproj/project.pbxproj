@@ -32,6 +32,8 @@
 		C2086E38264139F100FD6702 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2086E37264139F100FD6702 /* CountriesViewModel.swift */; };
 		C2086E3A26413C3000FD6702 /* CountryNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2086E3926413C3000FD6702 /* CountryNames.swift */; };
 		C2086E3E26416D9700FD6702 /* country.json in Resources */ = {isa = PBXBuildFile; fileRef = C2086E3D26416D9700FD6702 /* country.json */; };
+		C217CEFF2646624E00A834DF /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C217CEFE2646624E00A834DF /* FavouriteViewController.swift */; };
+		C217CF012646638E00A834DF /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C217CF002646638E00A834DF /* FavouriteViewModel.swift */; };
 		C2328C872642992C00D93640 /* CountryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2328C862642992C00D93640 /* CountryDetailsViewModel.swift */; };
 		C23335D526440ACA006EF13B /* Country.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C23335D326440ACA006EF13B /* Country.xcdatamodeld */; };
 		C23335D726440C4F006EF13B /* CountryCDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23335D626440C4F006EF13B /* CountryCDModel.swift */; };
@@ -68,6 +70,8 @@
 		C2086E37264139F100FD6702 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		C2086E3926413C3000FD6702 /* CountryNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryNames.swift; sourceTree = "<group>"; };
 		C2086E3D26416D9700FD6702 /* country.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = country.json; sourceTree = "<group>"; };
+		C217CEFE2646624E00A834DF /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		C217CF002646638E00A834DF /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
 		C2328C862642992C00D93640 /* CountryDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewModel.swift; sourceTree = "<group>"; };
 		C23335D426440ACA006EF13B /* Country.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Country.xcdatamodel; sourceTree = "<group>"; };
 		C23335D626440C4F006EF13B /* CountryCDModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCDModel.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 		C2035F55263F64220013C163 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C217CEFD2646622600A834DF /* Favourites */,
 				C25A465A2642085C00AC667D /* Country Details */,
 				C207D5EB263FB97500EF4A89 /* World Statistics */,
 				C2086E30264135B700FD6702 /* Countries */,
@@ -192,6 +197,7 @@
 				C2035F5C263F6FAE0013C163 /* WorldViewModel.swift */,
 				C2086E37264139F100FD6702 /* CountriesViewModel.swift */,
 				C2328C862642992C00D93640 /* CountryDetailsViewModel.swift */,
+				C217CF002646638E00A834DF /* FavouriteViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -232,6 +238,14 @@
 				C2086E342641369400FD6702 /* CountriesCollectionViewCell.xib */,
 			);
 			path = Countries;
+			sourceTree = "<group>";
+		};
+		C217CEFD2646622600A834DF /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				C217CEFE2646624E00A834DF /* FavouriteViewController.swift */,
+			);
+			path = Favourites;
 			sourceTree = "<group>";
 		};
 		C25A465A2642085C00AC667D /* Country Details */ = {
@@ -377,6 +391,8 @@
 				C2035F4C263F63520013C163 /* TargetType.swift in Sources */,
 				C2086E38264139F100FD6702 /* CountriesViewModel.swift in Sources */,
 				C2035F54263F637D0013C163 /* Constants.swift in Sources */,
+				C217CF012646638E00A834DF /* FavouriteViewModel.swift in Sources */,
+				C217CEFF2646624E00A834DF /* FavouriteViewController.swift in Sources */,
 				C2086E32264135E400FD6702 /* CountriesViewController.swift in Sources */,
 				C2035F5D263F6FAE0013C163 /* WorldViewModel.swift in Sources */,
 				C2086E3A26413C3000FD6702 /* CountryNames.swift in Sources */,

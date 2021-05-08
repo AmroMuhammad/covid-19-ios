@@ -14,11 +14,11 @@ class CountryDetailsViewController: UIViewController {
     private var historyViewModel:CountryDetailsViewModelType!
     private let disposeBag = DisposeBag()
     private var activityView:UIActivityIndicatorView!
-    var toolBar = UIToolbar()
-    var datePicker  = UIDatePicker()
-    var dateRecieved:Date = Date()
-    let dateFormatter = DateFormatter()
-    var countryCDObject : CountryCDModel!
+    private var toolBar = UIToolbar()
+    private var datePicker  = UIDatePicker()
+    private var dateRecieved:Date = Date()
+    private let dateFormatter = DateFormatter()
+    private var countryCDObject : CountryCDModel!
     
     @IBOutlet private weak var countryFlagImage: UIImageView!
     @IBOutlet private weak var countryNameLabel: UILabel!
@@ -28,11 +28,25 @@ class CountryDetailsViewController: UIViewController {
     @IBOutlet private weak var favouriteButton: UIImageView!
     
     var countryName:String!
+    var comingFrom:String!
+    var recievedCountryObject:CountryCDModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = countryName!
         
+        if(comingFrom == "favourite"){
+            favouriteButton.isHidden = true
+            navigationItem.rightBarButtonItem = nil
+            
+            let containerVC = self.children.last as! CountryDetailsTableViewController
+            containerVC.updateUIFromFavourite(response: recievedCountryObject)
+            self.dateLabel.text = recievedCountryObject.date
+            self.timeLabel.text = (recievedCountryObject.time.components(separatedBy: "T")[1].components(separatedBy: "+")[0])+" GMT"
+            self.countryNameLabel.text = countryName
+            self.countryFlagImage.sd_setImage(with: URL(string: "https://www.countryflags.io/\(Utils.countryCode(country: (self.countryName)!))/shiny/64.png"), placeholderImage: UIImage(named: "placeholder"))
+            
+        }else{
         // MARK: gesture to add and remove from favourites
         let tap = UITapGestureRecognizer(target: self, action:#selector(favouriteTapped))
         favouriteButton.addGestureRecognizer(tap)
@@ -80,6 +94,7 @@ class CountryDetailsViewController: UIViewController {
         
         
         historyViewModel.fetchDataWithoutDate(countryName: countryName)
+            }
     }
     
     
@@ -170,6 +185,6 @@ class CountryDetailsViewController: UIViewController {
     
     
     func createObjectForCoreData(response:Response){
-        countryCDObject = CountryCDModel(countryName: countryName, date: dateLabel.text!, time: timeLabel.text!, newCases: response.cases.new!, activeCases: String(response.cases.active!), criticalCases: String(response.cases.critical!), recoveredCases: String(response.cases.recovered!), totalCases: String(response.cases.total!), newDeaths: response.deaths.new!, totalDeaths: String(response.deaths.total!))
+        countryCDObject = CountryCDModel(countryName: countryName, date: response.day!, time: response.time!, newCases: response.cases.new!, activeCases: String(response.cases.active!), criticalCases: String(response.cases.critical!), recoveredCases: String(response.cases.recovered!), totalCases: String(response.cases.total!), newDeaths: response.deaths.new!, totalDeaths: String(response.deaths.total!))
     }
 }

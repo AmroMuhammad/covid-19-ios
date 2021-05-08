@@ -37,3 +37,7 @@ protocol CountryDetailsViewModelType {
     var LoadingObservable: Observable<Bool> {get}
     var dataObservable:Observable<[Response]> {get}
 }
+
+protocol FavouriteViewModelType : ViewModelType {
+    var dataObservable:Observable<[CountryCDModel]> {get}
+}
