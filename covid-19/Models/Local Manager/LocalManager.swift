@@ -101,50 +101,50 @@ class LocalManager {
         do{
             let countries = try context.fetch(fetchReq)
             for item in countries {
-                if let countryName = item.value(forKey: "countryName"){
-                    if let date = item.value(forKey: "date"){
-                        if let time = item.value(forKey: "time"){
-                            if let newCases = item.value(forKey: "newCases"){
-                                if let activeCases = item.value(forKey: "activeCases"){
-                                    if let recoveredCases = item.value(forKey: "recoveredCases"){
-                                        if let criticalCases = item.value(forKey: "criticalCases"){
-                                            if let totalCases = item.value(forKey: "totalCases"){
-                                                if let newDeaths = item.value(forKey: "newDeaths"){
-                                                    if let totalDeaths = item.value(forKey: "totalDeaths"){
-                                                        countriesArray.append(CountryCDModel(countryName: countryName as! String, date: date as! String, time: time as! String, newCases: newCases as! String, activeCases: activeCases as! String, criticalCases: criticalCases as! String, recoveredCases: recoveredCases as! String, totalCases: totalCases as! String, newDeaths: newDeaths as! String, totalDeaths: totalDeaths as! String))
-                                                    }else{
-                                                        print("empty total deaths")
-                                                    }
-                                                }else{
-                                                    print("empty new deaths")
-                                                }
-                                            }else{
-                                                print("empty total cases")
-                                            }
-                                        }else{
-                                            print("empty critical ")
-                                        }
-                                    }else{
-                                        print("empty recovered")
-                                    }
-                                }else{
-                                    print("empty active")
-                                }
-                            } else {
-                                print("empty newCases")
-                            }
-                        } else {
-                            print("empty time")
-                        }
-                    } else {
-                        print("empty date")
-                    }
-                } else {
-                    print("empty countryName")
+                guard let countryName = item.value(forKey: "countryName") as? String else {
+                      print("Empty country name, or not string")
+                      return countriesArray
                 }
+                guard let date = item.value(forKey: "date") as? String else {
+                      print("Empty date, or not string")
+                      return countriesArray
+                }
+                guard let time = item.value(forKey: "time") as? String else {
+                      print("Empty time, or not string")
+                      return countriesArray
+                }
+                guard let newCases = item.value(forKey: "newCases") as? String else {
+                      print("Empty newCases, or not string")
+                      return countriesArray
+                }
+                guard let activeCases = item.value(forKey: "activeCases") as? String else {
+                      print("Empty activeCases, or not string")
+                      return countriesArray
+                }
+                guard let recoveredCases = item.value(forKey: "recoveredCases") as? String else {
+                      print("Empty recoveredCases, or not string")
+                      return countriesArray
+                }
+                guard let criticalCases = item.value(forKey: "criticalCases") as? String else {
+                      print("Empty criticalCases, or not string")
+                      return countriesArray
+                }
+                guard let totalCases = item.value(forKey: "totalCases") as? String else {
+                      print("Empty totalCases, or not string")
+                      return countriesArray
+                }
+                guard let newDeaths = item.value(forKey: "newDeaths") as? String else {
+                      print("Empty newDeaths, or not string")
+                      return countriesArray
+                }
+                guard let totalDeaths = item.value(forKey: "totalDeaths") as? String else {
+                      print("Empty totalCases, or not string")
+                      return countriesArray
+                }
+                 countriesArray.append(CountryCDModel(countryName: countryName, date: date, time: time, newCases: newCases, activeCases: activeCases, criticalCases: criticalCases, recoveredCases: recoveredCases, totalCases: totalCases, newDeaths: newDeaths, totalDeaths: totalDeaths))
             }
         } catch (_) {
-            print("CAAAAAAAAATCHHHHHHHH  GET")
+            print("CAAAAAAAAATCHHHHHHHH")
             return countriesArray
         }
         print("Finish Retrive  GET")

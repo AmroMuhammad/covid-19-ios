@@ -72,13 +72,13 @@ class CountryDetailsViewController: UIViewController {
             if(response.isEmpty){
                 self?.showErrorMessage(errorMessage: "No data Available in this day")
             }else{
-                self?.createObjectForCoreData(response: response[0])
                 
                 containerVC.updateUI(response: response[0])
                 self?.dateLabel.text = response[0].day
                 self?.timeLabel.text = (response[0].time!.components(separatedBy: "T")[1].components(separatedBy: "+")[0])+" GMT"
                 self?.countryNameLabel.text = self?.countryName
                 self?.countryFlagImage.sd_setImage(with: URL(string: "https://www.countryflags.io/\(Utils.countryCode(country: (self?.countryName)!))/shiny/64.png"), placeholderImage: UIImage(named: "placeholder"))
+                self?.createObjectForCoreData(response: response[0])
             }
         }).disposed(by: disposeBag)
         
@@ -185,6 +185,6 @@ class CountryDetailsViewController: UIViewController {
     
     
     func createObjectForCoreData(response:Response){
-        countryCDObject = CountryCDModel(countryName: countryName, date: response.day!, time: response.time!, newCases: response.cases.new!, activeCases: String(response.cases.active!), criticalCases: String(response.cases.critical!), recoveredCases: String(response.cases.recovered!), totalCases: String(response.cases.total!), newDeaths: response.deaths.new!, totalDeaths: String(response.deaths.total!))
+        countryCDObject = CountryCDModel(countryName: countryName, date: response.day ?? "NA", time: response.time ?? "NA", newCases: response.cases.new ?? "-", activeCases: String(response.cases.active ?? 0), criticalCases: String(response.cases.critical ?? 0), recoveredCases: String(response.cases.recovered ?? 0), totalCases: String(response.cases.total ?? 0), newDeaths: response.deaths.new ?? "-", totalDeaths: String(response.deaths.total ?? 0))
     }
 }
