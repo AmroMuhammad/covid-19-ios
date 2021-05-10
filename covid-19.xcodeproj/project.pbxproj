@@ -144,7 +144,7 @@
 		C2035F40263F63520013C163 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C2035F59263F69F10013C163 /* POJOs */,
+				C2035F59263F69F10013C163 /* Model */,
 				C2035F41263F63520013C163 /* Local Manager */,
 				C2035F45263F63520013C163 /* Network Layer */,
 			);
@@ -202,14 +202,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		C2035F59263F69F10013C163 /* POJOs */ = {
+		C2035F59263F69F10013C163 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				C2035F5A263F6A010013C163 /* StatisticsModel.swift */,
 				C2086E3926413C3000FD6702 /* CountryNames.swift */,
 				C23335D626440C4F006EF13B /* CountryCDModel.swift */,
 			);
-			path = POJOs;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C2035F5E263F709F0013C163 /* Contracts */ = {

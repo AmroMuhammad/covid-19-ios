@@ -40,12 +40,12 @@ class CountryDetailsTableViewController: UITableViewController {
     }
 
     func updateUI(response:Response){
-        newCasesLabel.text = response.cases.new
+        newCasesLabel.text = response.cases.new ?? "-"
         activeCasesLabel.text = String(response.cases.active ?? 0)
         criticalCasesLabel.text = String(response.cases.critical ?? 0)
         recoveredCasesLabel.text = String(response.cases.recovered ?? 0)
         totalCasesLabel.text = String(response.cases.total ?? 0)
-        newDeathLabel.text = response.deaths.new
+        newDeathLabel.text = response.deaths.new ?? "-"
         totalDeathLabel.text = String(response.deaths.total ?? 0)
 
     }
